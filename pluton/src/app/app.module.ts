@@ -14,8 +14,12 @@ import { ClientsComponent } from './clients/clients.component';
 import { PriceComponent } from './price/price.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  // { path:'', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'services', component: ServicesComponent },
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'clients', component: ClientsComponent },
@@ -36,12 +40,13 @@ const routes: Routes = [
     ClientsComponent,
     PriceComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports:[ 
     BrowserModule, 
     FormsModule, 
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes, { enableTracing: true }) 
   ],
   providers: [],
   bootstrap: [AppComponent]
