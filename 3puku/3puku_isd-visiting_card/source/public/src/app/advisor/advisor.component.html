@@ -1,0 +1,108 @@
+<div class="advisor theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper" [hidden]="loadingDone">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>お待ちください。</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>-->
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" routerLink="/advisor/top">賃貸接客アドバイスシステム管理</a>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <!--<img src="assets/admin_bsb_material_design/images/user.png" width="48" height="48" alt="User" />-->
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{lastName}} {{firstName}}</div>
+                    <div class="email">{{email}}</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <!--<li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li role="seperator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                            <li role="seperator" class="divider"></li>-->
+                            <li><a (click)="logout()"><i class="material-icons">input</i>ログアウト</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li [ngClass]="{'active' : router.url === '/advisor'||router.url === '/advisor/step1'
+									||router.url === '/advisor/step2'||router.url === '/advisor/step3'||router.url === '/advisor/step4'
+									||router.url === '/advisor/step5'}">
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i></i>
+                            <span style="margin-left: 0px">接客アドバイス管理</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="left_menu_item" [ngClass]="{'active' : router.url === '/advisor/step1'}">
+                                <a routerLink="/advisor/step1">STEP1 : 初期接客</a>
+                            </li>
+                            <li class="left_menu_item" [ngClass]="{'active' : router.url === '/advisor/step2'}">
+                                <a routerLink="/advisor/step2">STEP2 : 心を開いてからの接客方法</a>
+                            </li>
+							<li class="left_menu_item" [ngClass]="{'active' : router.url === '/advisor/step3'}">
+                                <a routerLink="/advisor/step3">STEP3 : その人の決め手となるところを提示</a>
+                            </li>
+                            <li class="left_menu_item" [ngClass]="{'active' : router.url === '/advisor/step4'}">
+                                <a routerLink="/advisor/step4">STEP4 : 長引いた時の反対方法</a>
+                            </li>
+							<li class="left_menu_item" [ngClass]="{'active' : router.url === '/advisor/step5'}">
+                                <a routerLink="/advisor/step5">STEP5 : 追客の仕方、注意点</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+    </section>
+
+    <!--content-->
+	<router-outlet></router-outlet>
+</div>
+

@@ -1,0 +1,37 @@
+.type-title{
+	background-color: #ddd5fd
+}
+.border-top-none{
+	border-top: none;
+}
+.border-bottom-none{
+	border-bottom: none;
+}
+.form-group textarea {
+	width: 650px;
+	height: 200px;
+}
+#edit, #editConfirm{
+	.modal-dialog {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left : 30%;
+		.modal-content {
+			width: 850px !important;
+			.modal-body {
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+}
+.modal-dialog{
+	.modal-content{
+		.type-advice{
+			width: 650px;
+		}
+	}
+}
+.w70{
+	width: 70px;
+}

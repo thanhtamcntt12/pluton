@@ -1,0 +1,119 @@
+##################################Install Server##################################
+sudo -s
+
+#Install Apache
+yum install httpd
+service httpd start
+
+#Install MySQL
+yum install mysql-server
+service mysqld start
+/usr/bin/mysql_secure_installation
+
+#Install PHP
+yum install php php-mysql
+
+#run automatically when the server boots
+chkconfig httpd on
+chkconfig mysqld on
+
+#restart Apache
+service httpd restart
+
+#Update PHP 5.3 to 5.6
+rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm
+yum remove php-common       # Need to remove this, otherwise it conflicts
+yum install php56w
+yum install php56w-mysql
+yum install php56w-common
+yum install php56w-pdo
+yum install php56w-opcache
+
+#Install PHP extension
+yum install php56w-mbstring
+yum install php56w-dom
+
+yum install php55w-xml.x86_64 
+yum install php56w-pdo_mysql
+
+##################################Install build tool##################################
+#Install npm (package managernpm) via nodejs
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+yum -y install nodejs npm
+npm update -g npm
+
+#Angular2 buil tool
+npm install -g angular-cli
+
+#Install Composer
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
+export PATH=$PATH:/bin:/usr/local/bin
+
+##################################Deploy Database##################################
+mysql -uroot -p5aver5aver 3puku_isd < 3puku_isd.sql
+
+##################################Deploy Source##################################
+#Config GIT (private key which its public key is on Gitlab)
+cd ~/.ssh #root
+vi config
+>Host gitlab.saver.jp
+>  HostName gitlab.saver.jp
+>  User git
+>  Port 22
+>  IdentityFile ~/.ssh/git_pull 
+
+#Clone source
+yum install git
+mkdir /usr/git
+cd /usr/git
+git clone git@gitlab.saver.jp:devmat/3puku_isd.git
+
+#Create default angular-cli project
+ng new default
+
+#Create default .htaccess
+vi .htaccess
+><IfModule mod_rewrite.c>
+>  Options Indexes FollowSymLinks
+>  RewriteEngine On
+>  RewriteCond %{REQUEST_FILENAME} !-f
+>  RewriteCond %{REQUEST_FILENAME} !-d
+>  RewriteRule . /index.html [L]
+></IfModule>
+
+#Write deploy file
+cd 3puku_isd
+vi deploy.sh
+>git stash save --keep-index
+>git stash drop
+>git pull
+>cd source
+>mv -f .env_pro .env
+>composer install
+>php artisan cache:clear 
+>chmod 777 -R storage
+>cd public
+>rm -rf node_modules
+>npm cache clean
+>npm install
+>cp -rf /usr/git/default/node_modules /usr/git/3puku_isd/source/public/node_modules
+>ng build --prod --env=prod
+>cp -f /usr/git/.htaccess /usr/git/3puku_isd/source/public/dist/
+>cp -R src/backend dist/
+>
+
+chmod +x deploy.sh
+./deploy.sh
+
+#Change Document Root, Allow Url override (.htaccess)
+vi /etc/httpd/conf/httpd.conf
+>DocumentRoot "/usr/git/3puku_isd/source/public/dist"
+>AllowOverride All
+
+service httpd restart
+
+#Change server timezone
+rm /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime

@@ -1,0 +1,133 @@
+<section class="content">
+    <div class="container-fluid right-side">
+        <!-- Search form -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            検索条件
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <form class="form-horizontal">
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+                                    <label for="email_address_2">顧客名</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="name" [(ngModel)]="searchService.name" class="form-control"
+                                            placeholder="顧客名（氏名またはフリガナ）を入力" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+                                    <label for="email_address_2">初回来店日</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 p-l-0">
+                                            <my-date-picker name="fromDate" id="fromDate"
+                                            [options]="myDatePickerOptions"
+                                            [(ngModel)]="searchService.fromDate" required placeholder="YYYYMMDD"></my-date-picker>
+                                        </div>
+										<div class="col-lg-1 col-md-1 col-sm-1 text-center p-l-0 col-xs-2" style="font-size:24pt;">
+										~
+										</div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-10 p-l-0">
+                                            <my-date-picker name="toDate" id="toDate"
+                                            [options]="myDatePickerOptions"
+                                            [(ngModel)]="searchService.toDate" required placeholder="YYYYMMDD"></my-date-picker>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                                    <button type="button" class="btn bg-red m-t-15 waves-effect"
+                                    (click) ="initSearch()">検索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- #END# Search form -->
+
+        <!-- Exportable Table -->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover datatable">
+                                <thead>
+                                <tr>
+                                    <th class="w80"></th>
+                                    <th class="w140">顧客名</th>
+                                    <th class="w150">初回来店日</th>
+                                    <th class="w160">担当者/ステータス</th>
+                                    <th class="w180">接客後の所感・疑問等</th>
+                                    <th class="w170">担当者へのアドバイス</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr
+                                *ngFor = "let c of customers">
+                                <td class="w80"><a class="btn btn-default waves-effect m-r-20"
+                                                        routerLink="/staff/customer/view/{{c.id}}">詳細</a></td>
+                                <td class="w140">{{c.last_name_kana}} {{c.first_name_kana}}<br/>{{c.last_name}} {{c.first_name}}</td>
+                                <td class="w150">{{c.created_at | amDateFormat:'YYYY/MM/DD'}}
+                                </td>
+                                <td class="w160">{{c.s_last_name}} {{c.s_first_name}}<br/>{{status[c.customer_status]}}</td>
+                                <td class="w180 line-breaker">{{c.note2}}</td>
+                                <td class="w170 line-breaker">{{c.note3}}</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="dataTables_wrapper ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="pagination">{{total}}件中{{total > 0 ? (searchService.pager - 1) * number_per_page + 1 : (searchService.pager - 1) * number_per_page}}~{{(searchService.pager -
+                                        1) *
+                                        number_per_page + number_items }}件を表示
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <ul class="pagination">
+                                        <li
+                                        *ngIf="searchService.pager > 1" class="paginate_button previous"><a (click)= "prev()">前へ</a> </li>
+                                        <li
+                                        *ngIf="searchService.pager <= 1" class="paginate_button previous
+                                        disabled"><a>前へ</a> </li>
+                                        <li
+                                        *ngFor = "let p of page_list">
+                                        <a [ngClass]="p==searchService.pager ? 'active':''" (click) = "current(p)" >{{p}}</a>
+                                        </li>
+                                        <li
+                                        *ngIf="(searchService.pager - 1) * number_per_page + number_items < total"
+                                        class="paginate_button next"><a (click)= "next()">次</a> </li>
+                                        <li
+                                        *ngIf="(searchService.pager - 1) * number_per_page + number_items == total"
+                                        class="paginate_button
+                                        previous disabled"><a>次</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #END# Exportable Table -->
+    </div>
+</section>

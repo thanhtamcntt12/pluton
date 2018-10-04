@@ -1,0 +1,89 @@
+<div class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper" [hidden]="loadingDone">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>お待ちください。</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--<a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>-->
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" routerLink="/staff/top">賃貸接客アドバイスシステム</a>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <!--<img src="assets/admin_bsb_material_design/images/user.png" width="48" height="48" alt="User" />-->
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{lastName}} {{firstName}}</div>
+                    <div class="email">{{email}}</div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a (click)="logout()"><i class="material-icons">input</i>ログアウト</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="left_menu_item" id="mn_customer_list" [ngClass]="{'active' : router.url === '/staff/customer' || router.url === '/staff/customer/view'}">
+                        <a routerLink="/staff/customer">
+                            <i></i>
+                            <span>顧客一覧</span>
+                        </a>
+                    </li>
+					 <li class="left_menu_item" id="mn_customer_add" [ngClass]="{'active' : router.url === '/staff/customer/add'}">
+                        <a routerLink="/staff/customer/add">
+                            <i></i>
+                            <span>新規顧客登録</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- #Menu -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+    </section>
+
+    <!--content-->
+	<router-outlet></router-outlet>
+</div>
+

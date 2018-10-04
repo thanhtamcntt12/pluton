@@ -1,0 +1,115 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+class VisitingCard extends Model
+{
+    protected $table = 'visiting_cards';
+
+    public static function addVisitingCard($store_id,$customer_id,$last_name,$first_name,$last_name_kana,$first_name_kana,$birthday,$postcode,$address1,$address2,$mobile_phone,$phone,$fax,$email,$office_name,$office_postcode,$office_address1,$office_address2,$question1_1_status,$question1_1_detail,$question2_1_1_status,$question2_1_2_status,$question2_1_3_status,$question2_1_4_status,$question2_1_5_status,$question2_1_6_status,$question2_1_6_detail,$question2_2_1_status,$question2_2_2_status,$question2_2_3_status,$question2_2_4_status,$question2_2_5_status,$question2_2_6_status,$question2_2_6_detail,$question2_3_1_status,$question2_3_2_status,$question2_3_3_status,$question2_3_4_status,$question2_3_5_status,$question2_3_5_detail,$question2_4_1_status,$question2_4_2_status,$question2_4_3_status,$question2_4_4_status,$question2_4_5_status,$question2_4_6_status,$question2_4_6_detail,$question3_1_detail,$question3_2_1_status,$question3_2_2_status,$question3_2_3_status,$question4_detail,$question5_1_status,$question5_2_status,$question5_3_status,$question5_4_status,$question5_4_detail,$question5_5_status,$question5_7_status,$question5_8_status,$question5_9_status,$question5_10_status,$question5_11_status,$question5_11_detail,$question6_detail,$question7_detail,$question8_1_1_date,$question8_1_2_status,$question8_2_1_num,$question8_2_2_num,$question8_2_3_num,$question8_2_4_num,$question8_3_1_num,$question8_3_1_status,$question8_3_2_status,$question8_3_3_status,$question8_3_4_status,$question8_3_5_status,$question8_3_6_status,$question8_3_7_status,$question8_3_8_status,$question8_3_9_status,$question8_4_1_status,$question8_4_2_status,$question8_4_3_status,$question8_5_1_status,$question8_5_2_status,$question8_6_1_num,$question8_6_2_num,$question8_7_1_num,$question8_7_2_num,$question8_8_1_status,$question8_8_2_num,$question8_8_3_num,$question8_9_1_status,$question8_9_2_status,$question8_9_3_status,$question8_10_1_detail){
+        $vistingcard = new Visitingcard();
+        $vistingcard->store_id = $store_id;
+        $vistingcard->customer_id = $customer_id;
+        $vistingcard->last_name = $last_name;
+        $vistingcard->first_name = $first_name;
+        $vistingcard->last_name_kana = $last_name_kana;
+        $vistingcard->first_name_kana = $first_name_kana;
+        $vistingcard->birthday = $birthday;
+        $vistingcard->postcode = $postcode;
+        $vistingcard->address1 = $address1;
+        $vistingcard->address2 = $address2;
+        $vistingcard->mobile_phone = $mobile_phone;
+        $vistingcard->phone = $phone;
+        $vistingcard->fax = $fax;
+        $vistingcard->email = $email;
+        $vistingcard->office_name = $office_name;
+        $vistingcard->office_postcode = $office_postcode;
+        $vistingcard->office_address1 = $office_address1;
+        $vistingcard->office_address2 = $office_address2;
+        $vistingcard->question1_1_status = $question1_1_status;
+        $vistingcard->question1_1_detail = $question1_1_detail;
+        $vistingcard->question2_1_1_status = $question2_1_1_status;
+        $vistingcard->question2_1_2_status = $question2_1_2_status;
+        $vistingcard->question2_1_3_status = $question2_1_3_status;
+        $vistingcard->question2_1_4_status = $question2_1_4_status;
+        $vistingcard->question2_1_5_status = $question2_1_5_status;
+        $vistingcard->question2_1_6_status = $question2_1_6_status;
+        $vistingcard->question2_1_6_detail = $question2_1_6_detail;
+        $vistingcard->question2_2_1_status = $question2_2_1_status;
+        $vistingcard->question2_2_2_status = $question2_2_2_status;
+        $vistingcard->question2_2_3_status = $question2_2_3_status;
+        $vistingcard->question2_2_4_status = $question2_2_4_status;
+        $vistingcard->question2_2_5_status = $question2_2_5_status;
+        $vistingcard->question2_2_6_status = $question2_2_6_status;
+        $vistingcard->question2_2_6_detail = $question2_2_6_detail;
+        $vistingcard->question2_3_1_status = $question2_3_1_status;
+        $vistingcard->question2_3_2_status = $question2_3_2_status;
+        $vistingcard->question2_3_3_status = $question2_3_3_status;
+        $vistingcard->question2_3_4_status = $question2_3_4_status;
+        $vistingcard->question2_3_5_status = $question2_3_5_status;
+        $vistingcard->question2_3_5_detail = $question2_3_5_detail;
+        $vistingcard->question2_4_1_status = $question2_4_1_status;
+        $vistingcard->question2_4_2_status = $question2_4_2_status;
+        $vistingcard->question2_4_3_status = $question2_4_3_status;
+        $vistingcard->question2_4_4_status = $question2_4_4_status;
+        $vistingcard->question2_4_5_status = $question2_4_5_status;
+        $vistingcard->question2_4_6_status = $question2_4_6_status;
+        $vistingcard->question2_4_6_detail = $question2_4_6_detail;
+        $vistingcard->question3_1_detail = $question3_1_detail;
+        $vistingcard->question3_2_1_status = $question3_2_1_status;
+        $vistingcard->question3_2_2_status = $question3_2_2_status;
+        $vistingcard->question3_2_3_status = $question3_2_3_status;
+        $vistingcard->question4_detail = $question4_detail;
+        $vistingcard->question5_1_status = $question5_1_status;
+        $vistingcard->question5_2_status = $question5_2_status;
+        $vistingcard->question5_3_status = $question5_3_status;
+        $vistingcard->question5_4_status = $question5_4_status;
+        $vistingcard->question5_4_detail = $question5_4_detail;
+        $vistingcard->question5_5_status = $question5_5_status;
+        $vistingcard->question5_7_status = $question5_7_status;
+        $vistingcard->question5_8_status = $question5_8_status;
+        $vistingcard->question5_9_status = $question5_9_status;
+        $vistingcard->question5_10_status = $question5_10_status;
+        $vistingcard->question5_11_status = $question5_11_status;
+        $vistingcard->question5_11_detail = $question5_11_detail;
+        $vistingcard->question6_detail = $question6_detail;
+        $vistingcard->question7_detail = $question7_detail;       
+        $vistingcard->question8_1_1_date = $question8_1_1_date;
+        $vistingcard->question8_1_2_status = $question8_1_2_status;
+        $vistingcard->question8_2_1_num = $question8_2_1_num;
+        $vistingcard->question8_2_2_num = $question8_2_2_num;
+        $vistingcard->question8_2_3_num = $question8_2_3_num;
+        $vistingcard->question8_2_4_num = $question8_2_4_num;        
+        $vistingcard->question8_3_1_num = $question8_3_1_num;
+        $vistingcard->question8_3_1_status = $question8_3_1_status;
+        $vistingcard->question8_3_2_status = $question8_3_2_status;
+        $vistingcard->question8_3_3_status = $question8_3_3_status;
+        $vistingcard->question8_3_4_status = $question8_3_4_status;
+        $vistingcard->question8_3_5_status = $question8_3_5_status;
+        $vistingcard->question8_3_6_status = $question8_3_6_status;
+        $vistingcard->question8_3_7_status = $question8_3_7_status;
+        $vistingcard->question8_3_8_status = $question8_3_8_status;
+        $vistingcard->question8_3_9_status = $question8_3_9_status;
+        $vistingcard->question8_4_1_status = $question8_4_1_status;
+        $vistingcard->question8_4_2_status = $question8_4_2_status;
+        $vistingcard->question8_4_3_status = $question8_4_3_status;
+        $vistingcard->question8_5_1_status = $question8_5_1_status;
+        $vistingcard->question8_5_2_status = $question8_5_2_status;
+        $vistingcard->question8_6_1_num = $question8_6_1_num;
+        $vistingcard->question8_6_2_num = $question8_6_2_num;
+        $vistingcard->question8_7_1_num = $question8_7_1_num;
+        $vistingcard->question8_7_2_num = $question8_7_2_num;
+        $vistingcard->question8_8_1_status = $question8_8_1_status;
+        $vistingcard->question8_8_2_num = $question8_8_2_num;
+        $vistingcard->question8_8_3_num = $question8_8_3_num;
+        $vistingcard->question8_9_1_status = $question8_9_1_status;
+        $vistingcard->question8_9_2_status = $question8_9_2_status;
+        $vistingcard->question8_9_3_status = $question8_9_3_status;
+        $vistingcard->question8_10_1_detail = $question8_10_1_detail;
+        $vistingcard->save();
+        return $vistingcard->id;
+    }
+}

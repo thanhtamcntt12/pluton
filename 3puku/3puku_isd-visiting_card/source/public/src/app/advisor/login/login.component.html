@@ -1,0 +1,48 @@
+<div style="background-color: #66CC66 !important;width:100%;height:100%;position: absolute;">
+<div class="login-page">
+	<div class="login-box">
+        <div class="logo">
+            <a>貨貸接客アドバイス<br/>システム管理</a>
+            <small></small>
+        </div>
+        <div class="card">
+            <div class="body">
+                <form id="sign_in" (ngSubmit)="login()">
+                    <div class="msg">ログイン</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input [(ngModel)]="model.email" type="email" class="form-control" name="email" placeholder="メールアドレス" required email autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input [(ngModel)]="model.password" type="password" class="form-control" name="password" placeholder="パスワード" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect" type="submit">ログイン</button>
+                        </div>
+                    </div>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-4">
+                           
+                        </div>
+                        <div class="col-xs-8 align-right">
+                            <a routerLink="/advisor/forgot-password">パスワードを忘れた方はこちら</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

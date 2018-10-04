@@ -12,4 +12,7 @@ export class PriceComponent implements OnInit {
   ngOnInit() {
   }
 
+  add_beacon() {
+    console.log('hello');
+  }
 }

@@ -1,0 +1,294 @@
+<section class="content">
+	<h5 class="p-l-15 m-b-20">STEP5 : 追客の仕方、注意点</h5>
+	<div class="container-fluid m-b-20 right-side">
+		<!-- Search form -->
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+							検索条件
+						</h2>
+					</div>
+					<div class="body">
+						<form class="form-horizontal">
+							<div class="row clearfix">
+								<div class="col-lg-1 col-md-2 col-sm-3 col-xs-3 form-control-label p-l-0">
+									<label>3分類</label>
+								</div>
+								<div class="col-lg-5 col-md-4 col-sm-9 col-xs-9 p-l-0">
+									<div class="col-lg-8" style="margin-bottom: 0px;">
+									<select class="form-control" [(ngModel)]="model.type_3_diagnosis_id" name="type_3_diagnosis_id">
+										<option value=''>3分類を選択</option>
+										<option *ngFor = "let str of type3diagnoses" value="{{str.type_3_diagnosis_id}}"> {{str.type_3_diagnosis_name}}</option>
+									</select>
+									</div>
+								</div>
+								<div class="col-lg-1 col-md-2 col-sm-3 col-xs-3 form-control-label p-l-0">
+									<label>12分類</label>
+								</div>
+								<div class="col-lg-5 col-md-4 col-sm-9 col-xs-9 p-l-0">
+									<div class="col-lg-8" style="margin-bottom: 0px;">
+									<select class="form-control" [(ngModel)]="model.type_12_diagnosis_id" name="type_12_diagnosis_id">
+										<option value=''>12分類を選択</option>
+										<option *ngFor = "let str of type12diagnoses" value="{{str.type_12_diagnosis_id}}"> {{str.type_12_diagnosis_name}}</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row clearfix">
+								<div class="col-lg-1 col-md-2 col-sm-3 col-xs-3 form-control-label p-l-0">
+									<label>60分類</label>
+								</div>
+								<div class="col-lg-5 col-md-4 col-sm-9 col-xs-9 p-l-0">
+									<div class="col-lg-8" style="margin-bottom: 0px;">
+									<select class="form-control" [(ngModel)]="model.type_60_diagnosis_id" name="type_60_diagnosis_id">
+										<option value=''>60分類を選択</option>
+										<option *ngFor = "let str of type60diagnoses" value="{{str.type_60_diagnosis_id}}"> {{str.type_60_diagnosis_name}}</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row clearfix">
+								<div class="col-lg-1 col-md-2 col-sm-4 col-xs-5">
+								</div>
+								<div class="col-lg-5 col-md-4 col-sm-8 col-xs-7 p-l-0">
+									<button type="button" class="btn bg-red m-t-15 m-l-15 waves-effect" (click) ="initSearch()">検索</button>
+									<button type="button" class="btn bg-red m-t-15 m-l-15 waves-effect" (click) ="clear()">クリア</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- #END# Search form -->
+		
+		<!-- table data -->
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover datatable">
+								<thead>
+									<tr>
+										<th class="w70 type-title text-center" style="vertical-align:middle">3分類</th>
+										<th class="w70 type-title text-center" style="vertical-align:middle">12分類</th>
+										<th class="w70 type-title text-center" style="vertical-align:middle">60分類</th>
+										<th class="type-title text-center" style="vertical-align:middle">アドバイス</th>
+										<th class="w70 type-title"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor = "let str of step5s">
+                                        <td class="w70" style="vertical-align:middle">{{str.type_3_diagnosis_name}}</td>
+										<td class="w70" style="vertical-align:middle">{{str.type_12_diagnosis_name}}</td>
+										<td class="w70" style="vertical-align:middle">{{str.type_60_diagnosis_name}}</td>
+                                        <td class="" style="padding: 0px">
+											<table style="width: 100%">
+												<tr>
+													<th class="w70 type-title border-top-none">60分類</th>
+													<td class="border-top-none"><p class="m-b-0 line-breaker">{{str.type_60_advice}}</p></td>
+												</tr>
+												<tr>
+													<th class="w70 type-title">12分類</th>
+													<td class="border-top-none"><p class="m-b-0 line-breaker">{{str.type_12_advice}}</p></td>
+												</tr>
+												<tr>
+													<th class="w70 type-title border-top-none border-bottom-none">3分類</th>
+													<td class="border-bottom-none"><p class="m-b-0 line-breaker">{{str.type_3_advice}}</p></td>
+												</tr>
+											</table>
+										</td>
+                                        <td class="w70" style="vertical-align:middle"><a class="btn btn-default waves-effect m-r-20" data-toggle="modal" data-target="#edit" (click) ="editStep(str.id)">編集</a></td>
+                                    </tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="dataTables_wrapper ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div class="pagination">{{total}}件中{{total > 0 ? (pager - 1) * number_per_page + 1 : (pager - 1) * number_per_page}}~{{(pager -
+                                        1) *
+                                        number_per_page + number_items }}件を表示
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <ul class="pagination">
+                                        <li
+                                        *ngIf="pager > 1" class="paginate_button previous"><a (click)= "prev()">前へ</a> </li>
+                                        <li
+                                        *ngIf="pager <= 1" class="paginate_button previous
+                                        disabled"><a>前へ</a> </li>
+                                        <li
+                                        *ngFor = "let p of page_list">
+                                        <a [ngClass]="p==pager ? 'active':''" (click) = "current(p)" >{{p}}</a>
+                                        </li>
+                                        <li
+                                        *ngIf="(pager - 1) * number_per_page + number_items < total"
+                                        class="paginate_button next"><a (click)= "next()">次</a> </li>
+                                        <li
+                                        *ngIf="(pager - 1) * number_per_page + number_items == total"
+                                        class="paginate_button
+                                        previous disabled"><a>次</a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end table data-->
+	</div>
+	<!-- edit modal -->
+	<div class="modal fade" id="edit" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form class="form-horizontal" id="form-validation">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">接客アドバイス編集</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row m-l-0">
+							<table class="table table-bordered" style="width: 60%">
+								<tr>
+									<th class="type-title">3分類</th>
+									<th class="type-title">12分類</th>
+									<th class="type-title">60分類</th>
+								</tr>
+								<tr>
+									<td>{{model.step5.type_3_diagnosis_name}}</td>
+									<td>{{model.step5.type_12_diagnosis_name}}</td>
+									<td>{{model.step5.type_60_diagnosis_name}}</td>
+								</tr>
+							</table>
+						</div>
+						<div class="row m-b-20">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<label>アドバイス</label>
+							</div>
+						</div>
+						<div class="row m-l-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
+								<label class="m-t-25">60分類</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+								<div class="form-group">
+									<div class="form-line">
+										<textarea [(ngModel)]="model.step5.type_60_advice" name="type_60_advice" type="text" class="form-control" placeholder="" required>
+										</textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row m-l-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
+								<label class="m-t-25">12分類</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+								<div class="form-group">
+									<div class="form-line">
+										<textarea [(ngModel)]="model.step5.type_12_advice" name="type_12_advice" type="text" class="form-control" placeholder="" required>
+										</textarea>	
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row m-l-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5">
+								<label class="m-t-25">3分類</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+								<div class="form-group">
+									<div class="form-line">
+										<textarea [(ngModel)]="model.step5.type_3_advice" name="type_3_advice" type="text" class="form-control" placeholder="" required>
+										</textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn bg-red waves-effect m-t-20">保存</button>
+						<button type="button" class="btn bg-red waves-effect m-t-20" data-toggle="modal" data-dismiss="modal" (click)="cancelEditPopup()">キャンセル</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- edit confirm modal -->
+	<div class="modal fade" id="editConfirm" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="defaultModalLabel">接客アドバイス編集</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row m-l-0">
+						<table class="table table-bordered" style="width: 60%">
+							<tr>
+								<th class="type-title">3分類</th>
+								<th class="type-title">12分類</th>
+								<th class="type-title">60分類</th>
+							</tr>
+							<tr>
+								<td>{{model.step5.type_3_diagnosis_name}}</td>
+								<td>{{model.step5.type_12_diagnosis_name}}</td>
+								<td>{{model.step5.type_60_diagnosis_name}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="row m-b-20">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>アドバイス</label>
+						</div>
+					</div>
+
+					<table class="table table-bordered table-hover datatable">
+						<tr>
+							<th class="col-lg-2 col-md-2 type-title border-top-none"  style="vertical-align:middle">60分類</th>
+							<td class="col-lg-10 col-md-10 border-top-none"><p class="m-b-0 line-breaker">{{model.step5.type_60_advice}}</p></td>
+						</tr>
+						<tr>
+							<th class="col-lg-2 col-md-2 type-title border-top-none"  style="vertical-align:middle">12分類</th>
+							<td class="col-lg-10 col-md-10 border-top-none"><p class="m-b-0 line-breaker">{{model.step5.type_12_advice}}</p></td>
+						</tr>
+						<tr>
+							<th class="col-lg-2 col-md-2 type-title border-top-none border-bottom-none" style="vertical-align:middle">3分類</th>
+							<td class="col-lg-10 col-md-10 border-bottom-none"><p class="m-b-0 line-breaker">{{model.step5.type_3_advice}}</p></td>
+						</tr>
+					</table>
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn bg-red waves-effect m-t-20" data-toggle="modal" data-dismiss="modal" data-target="#edit-confirm" (click) = "edit()">保存</button>
+					<button type="button" class="btn bg-red waves-effect m-t-20" data-toggle="modal" data-dismiss="modal"data-target="#edit">戻る</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- OK modal -->
+	<div class="modal fade" id="editedSuccess" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="defaultModalLabel">登録完了</h4>
+				</div>
+				<div class="modal-body">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<label>登録完了しました。</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<a class="btn bg-red waves-effect" data-dismiss="modal" (click)= "search()">OK</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

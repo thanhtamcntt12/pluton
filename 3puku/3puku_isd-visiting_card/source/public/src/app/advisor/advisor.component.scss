@@ -1,0 +1,32 @@
+.sidebar .menu .list .ml-menu li a{
+	padding-left:28px
+}
+.menu .list .ml-menu .active a::before{
+	content: '\E315';
+    font-family: 'Material Icons';
+    position: relative;
+    font-size: 21px;
+    height: 20px;
+    top: -5px;
+    right: 0px;
+}
+.menu .list .ml-menu .active a{
+	color: #747474;
+	font-weight: 600;
+	margin-left: 5px;
+}
+.advisor .navbar{
+	background-color: #009900;
+}
+.sidebar .user-info{
+	background-color: #990099;
+}
+.w50{
+	width: 50px;
+}
+.w80{
+	width: 50px;
+}
+.w66{
+	width: 50px;
+}

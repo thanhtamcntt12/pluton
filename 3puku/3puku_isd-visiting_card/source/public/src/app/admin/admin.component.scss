@@ -1,0 +1,21 @@
+.menu .list .ml-menu .active a::before{
+	content: '\E315';
+    font-family: 'Material Icons';
+    position: relative;
+    font-size: 21px;
+    height: 20px;
+    top: -5px;
+    right: 0px;
+}
+.menu .list .ml-menu .active a{
+	color: #747474;
+	font-weight: 600;
+	margin-left: 5px;
+}
+
+.admin .navbar{
+	background-color: #CC0000;
+}
+.sidebar .user-info{
+	background-color: #00CCCC;
+}

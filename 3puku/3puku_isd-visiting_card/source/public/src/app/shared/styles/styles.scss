@@ -1,0 +1,72 @@
+body{
+  padding-right:0!important;
+}
+.modal {
+  overflow-y: auto;
+}
+
+.modal-open {
+  overflow: auto;
+}
+
+.modal-open[style] {
+  padding-right: 0px !important;
+}
+
+.form-group textarea{
+  height: 150px;
+}
+
+.line-breaker {
+  white-space: pre-line;
+}
+.pagination li a.active {
+  background-color: #2196F3;
+  color: #fff;
+}
+
+.login-page {
+	.login-box {
+		.logo {
+			a {
+				font-size : 30px;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+    .text-left-not-xs, .text-center-not-xs, .text-right-not-xs, .text-justify-not-xs {
+        text-align: inherit;
+    }
+    .text-left-xs {
+        text-align: left;
+    }
+    .text-center-xs {
+        text-align: center;
+    }
+    .text-right-xs {
+        text-align: right;
+    }
+    .text-justify-xs {
+        text-align: justify;
+    }
+	
+	.form-group {
+		margin-left : 0px !important;
+	}
+}
+
+
+@media (min-width : 1224px) {
+	.right-side{
+		width: 950px;
+		float: left;
+	}
+	.right-side2{
+		width: 950px;
+		float: left;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+}

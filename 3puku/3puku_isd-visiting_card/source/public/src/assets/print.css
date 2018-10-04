@@ -1,0 +1,19 @@
+/* Staff - Customer view */
+* {
+	visibility: hidden;
+}
+
+.customer-view, .customer-view * {
+    visibility: visible;
+}
+.customer-view {
+	margin: 0px !important;
+    width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.customer-view .btn {
+    visibility: hidden;
+}

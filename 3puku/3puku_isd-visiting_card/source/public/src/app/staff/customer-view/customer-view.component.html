@@ -1,0 +1,466 @@
+<section class="content customer-view">
+	<div class="right-side2">
+		<a class="btn bg-red waves-effect m-r-20 m-b-20" routerLink="/staff/customer">戻る</a>
+		<div class="container-fluid m-b-20" >
+			<div class="row clearfix" style="background-color: #fff;">
+				<p class="title">顧客詳細</p>
+				<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 m-b-20">
+					<span class="customer_detail_mobile">
+						<table class="table table-bordered">                    
+							<tr>
+								<td style="vertical-align: middle;">顧客名</td>
+								<td colspan="3">
+								<span style="float: left"> {{data?.customer?.last_name_kana}} {{data?.customer?.first_name_kana}}<br/>{{data?.customer?.last_name}} {{data?.customer?.first_name}}</span>
+								<span class="m-t-5 m-b-5" style="float:right; opacity: 0.5">{{data?.customer?.type_60_diagnosis}} {{data?.customer?.type_12_diagnosis }} {{data?.customer?.type_12_surface_diagnosis }} {{data?.customer?.type_12_intent_diagnosis }} {{data?.customer?.type_3_diagnosis}}</span>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 40%">生年月日</td>
+								<td>{{data?.customer?.birthday | amDateFormat:'YYYY/MM/DD'}}</td>
+							</tr>
+							<tr>
+								<td>初回来店日</td>
+								<td>{{data?.customer?.created_at | amDateFormat:'YYYY/MM/DD'}}</td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;">接客担当者</td>
+								<td>{{data?.customer?.s_last_name}} {{data?.customer?.s_first_name}}</td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;">ステータス</td>
+								<td><select class="form-control m-t-5 m-b-5" style="border: 1px solid #ccc; border-radius: 4px;" [(ngModel)]="model.status" name="status" (ngModelChange)="updateStatus()">
+										<option *ngFor = "let s of status; let i = index" value="{{i + 1}}"> {{s}}</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;">備考</td>
+								<td colspan="3" class="line-breaker">{{data?.customer?.note1}}</td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;">接客後の所感・疑問等</td>
+								<td colspan="3" class="line-breaker">{{data?.customer?.note2}}</td>
+							</tr>
+							<tr>
+								<td style="vertical-align: middle;">担当者へのアドバイス</td>
+								<td colspan="3" class="line-breaker">{{data?.customer?.note3}}</td>
+							</tr>
+						</table>
+					</span>
+					
+					<span class="customer_detail_desktop">
+						<table class="table-bordered">                    
+							<tr>
+								<td class="w170" style="vertical-align: middle;">顧客名</td>
+								<td colspan="3">
+								<span style="float: left"> {{data?.customer?.last_name_kana}} {{data?.customer?.first_name_kana}}<br/>{{data?.customer?.last_name}} {{data?.customer?.first_name}}</span>
+								<span class="m-t-5 m-b-5" style="float:right; opacity: 0.5">{{data?.customer?.type_60_diagnosis}} {{data?.customer?.type_12_diagnosis }} {{data?.customer?.type_12_surface_diagnosis }} {{data?.customer?.type_12_intent_diagnosis }} {{data?.customer?.type_3_diagnosis}}</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="w170">生年月日</td>
+								<td>{{data?.customer?.birthday | amDateFormat:'YYYY/MM/DD'}}</td>
+								<td class="w120">初回来店日</td>
+								<td class="w160">{{data?.customer?.created_at | amDateFormat:'YYYY/MM/DD'}}</td>
+							</tr>
+							<tr>
+								<td class="w170" style="vertical-align: middle;">接客担当者</td>
+								<td style="vertical-align: middle;">{{data?.customer?.s_last_name}} {{data?.customer?.s_first_name}}</td>
+								<td class="w120" style="vertical-align: middle;">ステータス</td>
+								<td class="w160"><select class="form-control m-t-5 m-b-5" style="border: 1px solid #ccc; border-radius: 4px;" [(ngModel)]="model.status" name="status" (ngModelChange)="updateStatus()">
+										<option *ngFor = "let s of status; let i = index" value="{{i + 1}}"> {{s}}</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="w170" style="vertical-align: middle;">備考</td>
+								<td colspan="3" class="line-breaker word_break">{{data?.customer?.note1}}</td>
+							</tr>
+							<tr>
+								<td class="w170" style="vertical-align: middle;">接客後の所感・疑問等</td>
+								<td colspan="3" class="line-breaker word_break">{{data?.customer?.note2}}</td>
+							</tr>
+							<tr>
+								<td class="w170" style="vertical-align: middle;">担当者へのアドバイス</td>
+								<td colspan="3" class="line-breaker word_break">{{data?.customer?.note3}}</td>
+							</tr>
+						</table>
+					</span>
+				</div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 btn_action">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-3">
+					<button type="button" class="btn bg-red waves-effect m-r-20 m-b-20" data-toggle="modal" data-target="#editCustomer" (click)="getDetail()">編集</button>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-3">
+					<button type="button" class="btn bg-red waves-effect m-r-20" data-toggle="modal" data-target="#remove-confirm">削除</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid m-b-20">
+			<div class="row clearfix" style="background-color: #fff;">
+				<p class="title">最適な担当者</p>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngFor="let arrComp of compatibilities">
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" *ngFor="let c of arrComp">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-8 p-l-0 p-r-0">
+							<p class="form-group s_name" style="overflow-wrap: break-word" (click)="updateStaffInCharge(c)">{{c?.last_name}}{{c.first_name}}</p>
+						</div>
+						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-4 p-r-0">
+							<p>{{c?.compatibility}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid m-b-20 step" >
+			<div class="row clearfix" style="background-color: #fff;">
+				<p class="title">接客アドバイス</p>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-t-20 p-b-20">
+					<p>※グループで来店された場合、生年月日を登録した顧客以外と対応する際には接客アドバイスが適さない場合があります</p>
+
+					<div class="list-group" id="step1"  >
+						<p class="list-group-item">
+							STEP1 : 初期接客（来店したばかりへの接し方、トークの仕方）
+						</p>
+						<div class="list-group-item">
+							<div class="p-l-20" style="color:#F44336">
+								<p><span class="line-breaker">{{data?.step1?.type_12_advice}}</span></p>
+							</div>
+							<div class="p-l-50" style="color:#0000FF">
+								<p><span class="line-breaker">{{data?.step1?.type_3_advice}}</span></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="list-group" id="step2">
+						<p class="list-group-item">
+							STEP2 : 心を開いてからの接客方法（その人の特徴を捉える）
+						</p>
+						<div class="list-group-item">
+							<div class="p-l-20" style="color:#F44336">
+								<p><span class="line-breaker">{{data?.step2?.type_60_advice}}</span></p>
+							</div>
+							<div class="p-l-50" style="color:#0000FF">
+								<p><span class="line-breaker">{{data?.step2?.type_3_advice}}</span></p>
+							</div>
+							<div class="p-l-80" style="color:#000">
+								<p><span class="line-breaker">{{data?.step2?.type_12_advice}}</span></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="list-group" id="step3">
+						<p class="list-group-item">
+							STEP3 : その人の決め手となるところを提示（見せる物件の数や質を決める）
+						</p>
+						<div class="list-group-item">
+							<div class="p-l-20" style="color:#F44336">
+								<p><span class="line-breaker">{{data?.step3?.type_60_advice}}</span></p>
+							</div>
+							<div class="p-l-50" style="color:#0000FF">
+								<p><span class="line-breaker">{{data?.step3?.type_12_advice}}</span></p>
+							</div>
+							<div class="p-l-80" style="color:#000">
+								<p><span class="line-breaker">{{data?.step3?.type_3_advice}}</span></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="list-group" id="step4">
+						<p class="list-group-item">
+							STEP4 : 長引いた時の対応方法
+						</p>
+						<div class="list-group-item">
+							<div class="p-l-20" style="color:#F44336">
+								<p><span class="line-breaker">{{data?.step4?.type_12_advice}}</span></p>
+							</div>
+							<div class="p-l-50" style="color:#0000FF">
+								<p><span class="line-breaker">{{data?.step4?.type_3_advice}}</span></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="list-group" id="step5">
+						<p class="list-group-item">
+							STEP5 : 追客の仕方、注意点
+						</p>
+						<div class="list-group-item">
+							<div class="p-l-20" style="color:#F44336">
+								<p><span class="line-breaker">{{data?.step5?.type_60_advice}}</span></p>
+							</div>
+							<div class="p-l-50" style="color:#0000FF">
+								<p><span class="line-breaker">{{data?.step5?.type_12_advice}}</span></p>
+							</div>
+							<div class="p-l-80" style="color:#000">
+								<p><span class="line-breaker">{{data?.step5?.type_3_advice}}</span></p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Default Size -->
+		<div class="modal fade" id="editCustomer" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">顧客編集</h4>
+					</div>
+					<div class="modal-body">
+						<form  id="form-validation">
+						<div class="row clearfix">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+								<label for="customer_name">顧客名</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+										<div class="form-group">
+										<div class="form-line">
+											<input type="text" id="last_name_kana" class="form-control" placeholder="セイ" name="last_name_kana" maxlength="50"  [(ngModel)]="customer.last_name_kana" >
+										</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+										<div class="form-group">
+										<div class="form-line">
+											<input type="text" id="first_name_kana" class="form-control" placeholder="メイ"  name="first_name_kana" maxlength="50"  [(ngModel)]="customer.first_name_kana">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-2 col-md-2 col-sm-4 hidden-xs form-control-label">
+								<label for=""></label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+										<div class="form-group">
+										<div class="form-line">
+											<input type="text" id="last_name" class="form-control" placeholder="姓"  name="last_name" maxlength="50"  [(ngModel)]="customer.last_name">
+										</div>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+										<div class="form-group">
+										<div class="form-line">
+											<input type="text" id="first_name" class="form-control" placeholder="名"  name="first_name" maxlength="50"  [(ngModel)]="customer.first_name">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row clearfix m-t-20">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+								<label for="email_address_2">生年月日</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left: 0px">
+									<div class="form-group">
+										<my-date-picker name="birthday" class="birthday" id="birthday" required placeholder="YYYYMMDD" [options]="myDatePickerOptions"
+										[(ngModel)]="model.birthday" ></my-date-picker>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix m-t-20">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs" style="padding-left: 0px">
+								<label for="created_at">初回来店日</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left: 0px">
+									<div class="form-group">
+										<my-date-picker name="created_at" id="created_at" required placeholder="YYYYMMDD" [options]="myDatePickerOptions"
+										[(ngModel)]="model.created_at" ></my-date-picker>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="row clearfix m-t-20">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+								<label for="email_address_2">備考</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+								<div class="form-group">
+									<div class="form-line">
+										<textarea type="text" id="remarks" class="form-control" name="note1" placeholder="" [(ngModel)]="customer.note1" ></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row clearfix m-t-20">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs p-l-0 p-r-0">
+								<label for="note2">接客後の <br> 所感・疑問等</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+								<div class="form-group">
+									<div class="form-line">
+										<textarea type="text" class="form-control" name="note2" placeholder="" [(ngModel)]="customer.note2" ></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row clearfix">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs p-l-0 p-r-0">
+								<label for="note3">担当者への<br>アドバイス</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+								<div class="form-group">
+									<div class="form-line">
+										<textarea type="text" class="form-control" name="note3" placeholder="" [(ngModel)]="customer.note3" ></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="modal-footer">
+								<button type="submit" class="btn bg-red waves-effect" (click) ="confirm()" >保存</button>
+						<button type="button" class="btn bg-red waves-effect" data-dismiss="modal">キャンセル</button>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- edit confirm -->
+		<div class="modal fade" id="editConfirm" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">登録内容確認</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b-20" style="padding-left: 0px; padding-right: 0px">
+							<label>以下の内容で登録しますが、よろしいですか?</label>
+						</div>
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" style="padding-left: 0px; padding-right: 0px">
+								<label>顧客名</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 p-r-0">
+								<p>{{customer?.last_name_kana}}{{customer?.first_name_kana}}</p><p>{{customer?.last_name}}{{customer?.first_name}}</p>
+							</div>
+						</div>
+
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" style="padding-left: 0px; padding-right: 0px">
+								<label>生年月日</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 p-r-0">
+								<p>{{model.birthday?.date?.year}}/{{model.birthday?.date?.month >9 ? model.birthday?.date?.month : '0'+ model.birthday?.date?.month }}/{{model.birthday?.date?.day >9 ? model.birthday?.date?.day : '0'+ model.birthday?.date?.day  }}</p>
+							</div>
+						</div>
+						
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" style="padding-left: 0px; padding-right: 0px">
+								<label>初回来店日</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 p-r-0">
+								<p>{{model.created_at?.date?.year}}/{{model.created_at?.date?.month >9 ? model.created_at?.date?.month : '0'+ model.created_at?.date?.month }}/{{model.created_at?.date?.day >9 ? model.created_at?.date?.day : '0'+ model.created_at?.date?.day  }}</p>
+							</div>
+						</div>
+						
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" style="padding-left: 0px; padding-right: 0px">
+								<label>備考</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 p-r-0">
+								<p class="line-breaker">{{customer?.note1}}</p>
+							</div>
+						</div>
+						
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" style="padding-left: 0px; padding-right: 0px">
+								<label>接客後の<br>所感・疑問等</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 p-r-0">
+								<p class="line-breaker">{{customer?.note2}}</p>
+							</div>
+						</div>
+						
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12" style="padding-left: 0px; padding-right: 0px">
+								<label>担当者への<br>アドバイス</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12 p-r-0">
+								<p class="line-breaker">{{customer?.note3}}</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn bg-red waves-effect m-t-20"  data-target="#editedsuccess" (click)="updateCustomer()" >保存</button>
+						<button type="button" class="btn bg-red waves-effect m-t-20" data-dismiss="modal" data-toggle="modal" data-target="#editCustomer">戻る</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- edited success -->
+		<div class="modal fade" id="editedsuccess" tabindex="-1" role="dialog" >
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">登録完了</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>登録しました</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn bg-red waves-effect" data-dismiss="modal" (click)= getCustomerInfo()>OK</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- remove confirm -->
+		<div class="modal fade" id="remove-confirm" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">削除確認</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>削除しますか？</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn bg-red waves-effect"  (click)="removeCustomer()">削除</button>
+						<button class="btn bg-red waves-effect" data-dismiss="modal">キャンセル</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- remove complete -->
+		<div class="modal fade" id="remove-complete" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">削除完了</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>削除しました</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn bg-red waves-effect" data-dismiss="modal" routerLink="/staff/customer">OK</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> 

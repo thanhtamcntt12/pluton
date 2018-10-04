@@ -1,0 +1,132 @@
+.table2 tr,
+.table2 tr td{
+	border: none
+}
+.numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    width: 18px;
+    height: 18px;
+    padding: 0px;
+    background: #fff;
+    border: 1px solid #F44336;
+    color: #F44336;
+    text-align: center;
+    font: 16px Arial, sans-serif;
+    display: inline-block;
+}
+
+.numberCircle2{
+	border: 1px solid #0000FF;
+	color: #0000FF;
+}
+
+.numberCircle3{
+	border: 1px solid #000;
+	color: #000;
+}
+
+.customer-view .title{
+	padding:10px; 
+	border-bottom: 1px solid rgba(204, 204, 204, 0.35)
+}
+
+.customer-view #editConfirm{
+	.p-l-0{
+		padding-left: 15px;
+	}
+}
+
+.border_b_1{
+	border-bottom: 1px solid #ccc;
+}
+.border_t_1{
+	border-top: 1px solid #ccc;
+}
+.border_l_1,.sm_border_l_1{
+	border-left: 1px solid #ccc;
+}
+.border_r_1{
+	border-right: 1px solid #ccc;
+}
+.h50{
+	min-height: 20px;
+}
+.h20{
+	min-height: 34px;
+}
+.customer_detail_desktop{
+	display: block;
+	width: 800px;
+}
+.customer_detail_mobile{
+	display: none;
+}
+.btn_action{
+	display: block;
+	padding-left: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+    .customer-view .step .p-l-20{
+		padding-left: 0px;
+	}
+	.customer-view .step .p-l-50{
+		padding-left: 20px;
+	}
+	.customer-view .step .p-l-80{
+		padding-left: 40px;
+	}
+	.customer-view .step .form-control-label{
+		text-align: left;
+	}
+	.customer-view #editConfirm{
+		.p-l-0{
+			padding-left: 0px;
+		}
+	}
+	.sm_border_l_1{
+		border-left: none;
+	}
+	.h50{
+		min-height: 50px;
+	}
+	.h20{
+		min-height: 20px;
+	}
+	.customer_detail_desktop{
+		display: none;
+	}
+	.customer_detail_mobile{
+		display: block;
+	}
+	.btn_action{
+		padding-left: 0px;
+	}
+}
+p.s_name:hover{
+  cursor: pointer;
+}
+.table-bordered{
+	border: 1px solid #ccc;
+}
+.table-bordered tbody tr td, .table-bordered tbody tr th{
+	border: 1px solid #ccc;
+}
+
+.w170{
+	width: 170px;
+}
+.w160{
+	width: 160px;
+}
+.w120{
+	width: 120px;
+}
+.customer_detail_desktop table, 
+.customer_detail_desktop table tbody{
+	width: 800px;
+}
+.word_break{
+	word-break: break-all
+}

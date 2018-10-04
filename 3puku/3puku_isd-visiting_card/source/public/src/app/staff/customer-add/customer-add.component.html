@@ -1,0 +1,160 @@
+<section class="content">
+    <div class="container-fluid right-side">
+		<!-- Search form -->
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<h2>
+                            顧客登録
+						</h2>
+					</div>
+					<div class="body">
+						<form class="form-horizontal" id="form-validation">
+							<div class="row clearfix">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+									<label for="customer_name">顧客名</label>
+								</div>
+								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+                                            <div class="form-group">
+											<div class="form-line">
+												<input type="text" id="last_name_kana" class="form-control" placeholder="セイ" name="last_name_kana" maxlength="50"  [(ngModel)]="last_name_kana">
+											</div>
+                                            </div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+                                            <div class="form-group">
+												<div class="form-line">
+													<input type="text" id="first_name_kana" class="form-control" placeholder="メイ" name="first_name_kana" maxlength="50"  [(ngModel)]="first_name_kana">
+												</div>
+											</div>
+										</div>
+								</div>
+								
+								<div class="col-lg-2 col-md-2 col-sm-4 hidden-xs form-control-label">
+									<label for=""></label>
+								</div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+                                            <div class="form-group">
+											<div class="form-line">
+												<input type="text" id="last_name" class="form-control" placeholder="姓" name="last_name" maxlength="50"  [(ngModel)]="last_name" >
+											</div>
+                                            </div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 p-l-0">
+                                            <div class="form-group">
+											<div class="form-line">
+												<input type="text" id="first_name" class="form-control" placeholder="名"  name="first_name" maxlength="50"  [(ngModel)]="first_name">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row clearfix">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+									<label for="email_address_2">生年月日</label>
+								</div>
+								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 p-l-0 p-r-0">
+                                        <div class="form-group">
+                                            <my-date-picker name="birthday" class="birthday" id="birthday" required [options]="myDatePickerOptions"
+											[(ngModel)]="model.birthday" placeholder="YYYYMMDD" ></my-date-picker>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row clearfix">
+								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 form-control-label text-left-xs">
+									<label for="email_address_2">備考</label>
+								</div>
+								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+									<div class="form-group">
+										<div class="form-line">
+											<textarea type="text" id="remarks" class="form-control" placeholder="" name="note1"  [(ngModel)]="note1"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row clearfix">
+								<div class="col-lg-2 col-md-2 col-sm-4 hidden-xs form-control-label">
+								</div>
+								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+									<div>
+										<button type="submit" class="btn bg-red waves-effect m-t-15 m-r-30" data-toggle="modal" (click) ="confirm()">保存</button>
+										<button type="button" class="btn bg-red m-t-15 waves-effect" routerLink="/staff/customer">キャンセル</button>
+									</div>
+								</div>
+								
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- add confirm -->
+		<div class="modal fade" id="addConfirm" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">登録内容確認</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-b-20 p-l-0">
+							<label>以下の内容で登録しますが、よろしいですか?</label>
+						</div>
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+								<label>顧客名</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+								<p>{{last_name_kana}}{{first_name_kana}}</p><p>{{last_name}}{{first_name}}</p>
+							</div>
+						</div>
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+								<label>生年月日</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+								<p>{{model.birthday?.date?.year}}/{{model.birthday?.date?.month > 9 ? model.birthday?.date?.month : '0'+ model.birthday?.date?.month }}/{{model.birthday?.date?.day >9 ? model.birthday?.date?.day : '0'+ model.birthday?.date?.day  }}</p>
+							</div>
+						</div>
+						<div class="row clearfix m-l-0 m-r-0">
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+								<label>備考</label>
+							</div>
+							<div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+								<p class="line-breaker">{{note1}}</p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn bg-red waves-effect m-t-20" (click)="addCustomer()">保存</button>
+						<button type="button" class="btn bg-red waves-effect m-t-20" data-dismiss="modal">戻る</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- add confirm -->
+		<div class="modal fade" id="addedsuccess" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="defaultModalLabel">登録完了</h4>
+					</div>
+					<div class="modal-body">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<label>登録しました</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a class="btn bg-red waves-effect" data-dismiss="modal" routerLink="/staff/customer">OK</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> 
