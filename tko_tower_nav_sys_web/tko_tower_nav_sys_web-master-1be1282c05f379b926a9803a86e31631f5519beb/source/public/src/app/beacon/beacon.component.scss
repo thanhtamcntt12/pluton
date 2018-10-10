@@ -1,0 +1,54 @@
+.ngx-pagination{
+	text-align: center;
+	div{
+		width: 20px;
+		float: left;
+		background: #ddd;
+		margin-right:1px;
+	}
+	
+	div.pagination-previous{
+		width: 50px;
+	}
+	div.pagination-next{
+		width: 50px;
+	}
+}
+.beacon-page{
+	button{
+		float: right;
+	}
+}
+
+.float_left{
+	float:left
+}
+
+.uuid1{
+	width: 100px;
+}
+.uuid2,.uuid3,.uuid4{
+	width: 66px;
+}
+.uuid5{
+	width: 125px;
+}
+.uuid_space{
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-top: 6px;
+}
+.clear_both{
+	clear: both;
+}
+p{
+	margin: 0;
+}
+#add .modal-dialog .row,
+#edit .modal-dialog .row{
+	margin-bottom: 10px;
+}
+.note{
+	font-size: 12px;
+	color: #737373;
+}

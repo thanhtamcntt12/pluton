@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand"><b>東京タワーナビステム管理</b></a>
+    </div>
+  </div>
+</nav>
+<div class="content">
+	<div class="row">
+		<div class="left-side">
+			<ul class="list-group">
+				<li class="list-group-item" [ngClass]="{'active':router.url=='/beacon'}"><a routerLink="/beacon">ビーコン管理</a></li>
+				<li class="list-group-item" [ngClass]="{'active':router.url=='/guide'||router.url=='/guide/add'||router.url=='/guide/edit'}"><a routerLink="/guide">ガイド管理</a></li>
+			</ul>
+		</div>
+		 <!--content-->
+		<div class="right-side">
+			<router-outlet></router-outlet>
+		</div>
+		<div class="clear:both;display: table"></div>
+	</div>
+</div>

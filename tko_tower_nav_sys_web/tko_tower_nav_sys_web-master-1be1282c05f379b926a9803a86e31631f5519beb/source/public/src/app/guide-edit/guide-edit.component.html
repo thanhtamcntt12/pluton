@@ -1,0 +1,619 @@
+<div class="container-fluid guide-edit-page">
+	<h4 class="title">新規追加</h4>
+	<table class="mt20">
+		<tr>
+			<td><img id="upload_loading_pana" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ビーコン名</td>
+			<td class="text-center">
+				<select class="form-control" [(ngModel)]="model.beacon_id" name="beacon_id">
+					<option value=''>ビーコン名を選択</option>
+					<option *ngFor = "let str of beacons" value="{{str.id}}">{{str.name}}</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">パノラマ写真（昼）</td>
+			<td class="text-center">
+				<input type="file" name="file_panaromic_photo_noon" id="file_panaromic_photo_noon" class="file" accept=".jpeg, .jpg, .png" (change)="changeFileEvent($event)">
+				<img class="image" src="{{image_panaromic_photo_noon}}" width="200">
+				<label class="error error_format" id="file_panaromic_photo_noon_error">jpeg jpg png ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">パノラマ写真（夜）</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_panaromic_photo_night" class="file" accept=".jpeg, .jpg, .png" (change)="changeFileEvent($event)">
+				<img class="image" src="{{image_panaromic_photo_night}}" width="200">
+				<label class="error error_format" id="file_panaromic_photo_night_error">jpeg jpg png ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+
+	<table class="mt20">
+		<tr>
+			<td>日本語</td>
+			<td><img id="upload_loading_ja" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice"><input type="file" name="file" id="file_guide_voice_ja" class="file" accept=".mp3" (change)="changeFileEvent($event)">
+				<button id="play" (click)="playAudio('audio_guide_voice_ja')">再生</button><p></div>
+				<audio id="audio_guide_voice_ja"></audio>
+				<a class="image" href="{{url_guide_voice_ja}}">{{guide_voice_ja}}</a>
+				<label class="error error_format" id="file_guide_voice_ja_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_ja" class="file" accept=".csv" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_ja}}</a>
+				<label class="error error_format" id="file_guide_text_ja_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_ja" class="file" accept=".csv" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_ja}}</a>
+				<label class="error error_format" id="file_landscape_ja_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_ja" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_ja}}</a>
+				<label class="error error_format" id="file_tag_ja_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>英語</td>
+			<td><img id="upload_loading_en" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_en" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_en')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_en"></audio>
+				<a class="image" href="{{url_guide_voice_en}}">{{guide_voice_en}}</a>
+				<label class="error error_format" id="file_guide_voice_en_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_en" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_en}}</a>
+				<label class="error error_format" id="file_guide_text_en_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_en" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_en}}</a>
+				<label class="error error_format" id="file_landscape_en_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_en" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_en}}</a>
+				<label class="error error_format" id="file_tag_en_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>中国語(簡体字)</td>
+			<td><img id="upload_loading_cn_simplified" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_cn_simplified" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_cn_simplified')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_cn_simplified"></audio>
+				<a class="image" href="{{url_guide_voice_cn_simplified}}">{{guide_voice_cn_simplified}}</a>
+				<label class="error error_format" id="file_guide_voice_cn_simplified_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_cn_simplified" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_cn_simplified}}</a>
+				<label class="error error_format" id="file_guide_text_cn_simplified_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_cn_simplified" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_cn_simplified}}</a>
+				<label class="error error_format" id="file_landscape_cn_simplified_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_cn_simplified" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_cn_simplified}}</a>
+				<label class="error error_format" id="file_tag_cn_simplified_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>中国語(繁体字)</td>
+			<td><img id="upload_loading_cn_traditional" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_cn_traditional" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_cn_traditional')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_cn_traditional"></audio>
+				<a class="image" href="{{url_guide_voice_cn_traditional}}">{{guide_voice_cn_traditional}}</a>
+				<label class="error error_format" id="file_guide_voice_cn_traditional_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_cn_traditional" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_cn_traditional}}</a>
+				<label class="error error_format" id="file_guide_text_cn_traditional_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_cn_traditional" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_cn_traditional}}</a>
+				<label class="error error_format" id="file_landscape_cn_traditional_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_cn_traditional" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_cn_traditional}}</a>
+				<label class="error error_format" id="file_tag_cn_traditional_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>韓国語</td>
+			<td><img id="upload_loading_kr" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_kr" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_kr')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_kr"></audio>
+				<a class="image" href="{{url_guide_voice_kr}}">{{guide_voice_kr}}</a>
+				<label class="error error_format" id="file_guide_voice_kr_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_kr" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_kr}}</a>
+				<label class="error error_format" id="file_guide_text_kr_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_kr" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_kr}}</a>
+				<label class="error error_format" id="file_landscape_kr_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_kr" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_kr}}</a>
+				<label class="error error_format" id="file_tag_kr_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>SPAN(ES)</td>
+			<td><img id="upload_loading_es" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_es" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_es')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_es"></audio>
+				<a class="image" href="{{url_guide_voice_es}}">{{guide_voice_es}}</a>
+				<label class="error error_format" id="file_guide_voice_es_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_es" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_es}}</a>
+				<label class="error error_format" id="file_guide_text_es_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_es" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_es}}</a>
+				<label class="error error_format" id="file_landscape_es_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_es" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_es}}</a>
+				<label class="error error_format" id="file_tag_es_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+
+	<table class="mt20">
+		<tr>
+			<td>FRENCH GUIANA(GF)</td>
+			<td><img id="upload_loading_gf" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_gf" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_gf')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_gf"></audio>
+				<a class="image" href="{{url_guide_voice_gf}}">{{guide_voice_gf}}</a>
+				<label class="error error_format" id="file_guide_voice_gf_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_gf" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_gf}}</a>
+				<label class="error error_format" id="file_guide_text_gf_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_gf" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_gf}}</a>
+				<label class="error error_format" id="file_landscape_gf_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_gf" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_gf}}</a>
+				<label class="error error_format" id="file_tag_gf_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>ITALY(IT)</td>
+			<td><img id="upload_loading_it" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_it" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_it')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_it"></audio>
+				<a class="image" href="{{url_guide_voice_it}}">{{guide_voice_it}}</a>
+				<label class="error error_format" id="file_guide_voice_it_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_it" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_it}}</a>
+				<label class="error error_format" id="file_guide_text_it_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_it" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_it}}</a>
+				<label class="error error_format" id="file_landscape_it_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_it" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_it}}</a>
+				<label class="error error_format" id="file_tag_it_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>GERMANY(DE)</td>
+			<td><img id="upload_loading_de" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_de" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_de')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_de"></audio>
+				<a class="image" href="{{url_guide_voice_de}}">{{guide_voice_de}}</a>
+				<label class="error error_format" id="file_guide_voice_de_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_de" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_de}}</a>
+				<label class="error error_format" id="file_guide_text_de_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_de" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_de}}</a>
+				<label class="error error_format" id="file_landscape_de_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_de" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_de}}</a>
+				<label class="error error_format" id="file_tag_de_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>RUSSIAN FEDERATION(RU)</td>
+			<td><img id="upload_loading_ru" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_ru" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_ru')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_ru"></audio>
+				<a class="image" href="{{url_guide_voice_ru}}">{{guide_voice_ru}}</a>
+				<label class="error error_format" id="file_guide_voice_ru_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_ru" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_ru}}</a>
+				<label class="error error_format" id="file_guide_text_ru_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_ru" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_ru}}</a>
+				<label class="error error_format" id="file_landscape_ru_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_ru" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_ru}}</a>
+				<label class="error error_format" id="file_tag_ru_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>THAILAND(TH)</td>
+			<td><img id="upload_loading_th" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_th" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_th')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_th"></audio>
+				<a class="image" href="{{url_guide_voice_th}}">{{guide_voice_th}}</a>
+				<label class="error error_format" id="file_guide_voice_th_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_th" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_th}}</a>
+				<label class="error error_format" id="file_guide_text_th_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_th" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_th}}</a>
+				<label class="error error_format" id="file_landscape_th_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_th" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_th}}</a>
+				<label class="error error_format" id="file_tag_th_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>VIETNAM(vn)</td>
+			<td><img id="upload_loading_vn" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_vn" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_vn')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_vn"></audio>
+				<a class="image" href="{{url_guide_voice_vn}}">{{guide_voice_vn}}</a>
+				<label class="error error_format" id="file_guide_voice_vn_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_vn" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_vn}}</a>
+				<label class="error error_format" id="file_guide_text_vn_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_vn" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_vn}}</a>
+				<label class="error error_format" id="file_landscape_vn_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_vn" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_vn}}</a>
+				<label class="error error_format" id="file_tag_vn_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table>
+	
+	<table class="mt20">
+		<tr>
+			<td>INDONESIA(ID)</td>
+			<td><img id="upload_loading_id" class="upload_loading" src='assets/images/loader.gif'/></td>
+		</tr>
+	</table>
+	<table class="table table-bordered table-striped">
+		<tr>
+			<td class="text-center td1">ガイド音声</td>
+			<td class="text-center">
+				<div class="voice">
+					<input type="file" name="file" id="file_guide_voice_id" class="file" (change)="changeFileEvent($event)">
+					<button id="play" (click)="playAudio('audio_guide_voice_id')">再生</button>
+				</div>
+				<audio id="audio_guide_voice_id"></audio>
+				<a class="image" href="{{url_guide_voice_id}}">{{guide_voice_id}}</a>
+				<label class="error error_format" id="file_guide_voice_id_error">mp3 ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ガイドテキスト</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_guide_text_id" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{guide_text_id}}</a>
+				<label class="error error_format" id="file_guide_text_id_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">ランドスケープ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_landscape_id" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{landscape_id}}</a>
+				<label class="error error_format" id="file_landscape_id_error">csv ファイルを選択してください。</label>
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center td1">タグ</td>
+			<td class="text-center">
+				<input type="file" name="file" id="file_tag_id" class="file" (change)="changeFileEvent($event)">
+				<a class="image">{{tag_id}}</a>
+				<label class="error error_format" id="file_tag_id_error">zip ファイルを選択してください。</label>
+			</td>
+		</tr>
+	</table> 
+	<button class="btn bg-red waves-effect" [disabled]="!check_changed || !check_file_format" (click)="edit()">存在</button>
+</div>

@@ -1,0 +1,295 @@
+<div class="container-fluid beacon-page">
+	<h4 class="title">ビーコン管理</h4>
+	<button class="btn mb30 mt20" data-toggle="modal" data-target="#add" data-keyboard="false" (click)="add_beacon()">新規追加</button>
+	<table class="table table-bordered table-striped">
+		<thead>
+		  <tr>
+			<th  class="text-center">No</th>
+			<th  class="text-center">ビーコン名</th>
+			<th  class="text-center">ビーコンID</th>
+			<th  class="text-center">メジャー</th>
+			<th  class="text-center">マイナー</th>
+			<th  class="text-center">タイプ</th>
+			<th  class="text-center">編集</th>
+			<th  class="text-center">削除</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<tr *ngFor = "let beacon of beacons | paginate: { itemsPerPage: number_per_page, currentPage: pager, totalItems: total};let i = index">
+				<td class="text-center">{{beacon.id}}</td>
+				<td class="text-center">{{beacon.name}}</td>
+				<td class="text-center">{{beacon.uuid}}</td>
+				<td class="text-center">{{beacon.major}}</td>
+				<td class="text-center">{{beacon.minor}}</td>
+				<td class="text-center">{{beacon.type_name}}</td>
+				<td class="text-center"><a class="" data-toggle="modal" data-target="#edit" (click)="edit_beacon(i)">
+					<img width="30" height="auto" src="assets/images/edit.png"/></a></td>
+				<td class="text-center"><a class="" data-toggle="modal" data-target="#delete" (click)="delete_beacon(beacon.id)" >
+					<img width="30" height="auto" src="assets/images/delete.png"/></a></td>
+			</tr>
+		</tbody>
+    </table>
+	
+	<div class="text-center">  
+		<div class="row">
+		  <div class="medium-8 medium-offset-2 columns">
+			<h2 class="subheader"></h2>
+			<pagination-controls (pageChange)="pageChanged($event)" maxSize="10"></pagination-controls>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<!-- add -->
+<div class="modal fade" id="add" role="dialog">
+	<div class="modal-dialog">
+		<form #addBeaconForm="ngForm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">新規追加</h4>
+				</div>
+				<div class="modal-body lg">
+					<div class="row"> 
+						<div class="col-lg-2">
+							<label class="control-label">ビーコン名</label>
+						</div>
+						<div class="col-lg-10">
+							<p><input name="name" [(ngModel)]="model.name" required #name="ngModel" class="form-control" tabindex="1" maxlength="50"></p>
+							<p *ngIf="name.dirty && name.invalid" class="error"> 
+								必須項目です。 
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label>ビーコンID</label>
+						</div>
+						<div class="col-lg-10">
+							<p>
+								<input name="uuid1" [(ngModel)]="model.uuid1" #uuid1="ngModel" class="form-control float_left uuid1" required maxlength="8">
+								<span class="float_left uuid_space"> - </span> 
+								<input name="uuid2" [(ngModel)]="model.uuid2" #uuid2="ngModel" class="form-control float_left uuid2" required maxlength="4">
+								<span class="float_left uuid_space"> - </span>
+								<input name="uuid3" [(ngModel)]="model.uuid3" #uuid3="ngModel" class="form-control float_left uuid3" required maxlength="4">
+								<span class="float_left uuid_space"> - </span>
+								<input name="uuid4" [(ngModel)]="model.uuid4" #uuid4="ngModel" class="form-control float_left uuid4" required maxlength="4">
+								<span class="float_left uuid_space"> - </span>
+								<input name="uuid5" [(ngModel)]="model.uuid5" #uuid5="ngModel" class="form-control float_left uuid5" required maxlength="12">
+							</p>
+							<p *ngIf="uuid1.dirty && uuid1.invalid || uuid2.dirty && uuid2.invalid || uuid3.dirty && uuid3.invalid || uuid4.dirty && uuid1.invalid || uuid5.dirty && uuid5.invalid " class="clear_both error"> 
+								必須項目です。 
+							</p>
+						</div>
+					</div>
+					<div class="row"> 
+						<div class="col-lg-2">
+							<label class="control-label">メジャー</label>
+						</div>
+						<div class="col-lg-10">
+							<p><input type="text" pattern="[0-9]+"  name="major" [(ngModel)]="model.major" #major="ngModel" class="form-control" maxlength="9"></p>
+							<p *ngIf="major.dirty && major.invalid" class="error"> 
+								番号だけを入力してください。 
+							</p>
+						</div>
+					</div>
+					<div class="row"> 
+						<div class="col-lg-2">
+							<label class="control-label">マイナー</label>
+						</div>
+						<div class="col-lg-10">
+							<p><input type="text" pattern="[0-9]+" name="minor" [(ngModel)]="model.minor" #minor="ngModel" class="form-control" maxlength="9"></p>
+							<p *ngIf="minor.dirty && minor.invalid" class="error"> 
+								番号だけを入力してください。 
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label>タイプ</label>
+						</div>
+						<div class="col-lg-10">
+							<select class="form-control" [(ngModel)]="model.type" #type="ngModel" name="type" (change)="onChangeAddType()">
+								<option *ngFor = "let str of types" value="{{str.id}}"> {{str.name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+						</div>
+						<div class="col-lg-10 note">
+							長押しビーコンを選択する場合、メジャー値は　(0x10 << 8 | メジャー値)
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn bg-red waves-effect m-t-20" [disabled]="!addBeaconForm.valid" (click) ="add()">存在</button>
+					<button type="button" class="btn bg-red waves-effect m-t-20" data-dismiss="modal">戻る</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- add confirm -->
+<div class="modal fade" tabindex="-1" role="dialog" id="addedsuccess">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">登録完了</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<label>登録しました。</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn bg-red waves-effect" (click)="add_success()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- edit -->
+<div class="modal fade" id="edit" role="dialog">
+	<div class="modal-dialog">
+		<form #editBeaconForm="ngForm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">編集</h4>
+				</div>
+				<div class="modal-body lg">
+					<div class="row"> 
+						<div class="col-lg-2">
+							<label class="control-label">ビーコン名</label>
+						</div>
+						<div class="col-lg-10">
+							<p><input name="edit_name" [(ngModel)]="model.edit_name" required #edit_name="ngModel" class="form-control" tabindex="1" maxlength="50"></p>
+							<p *ngIf="edit_name.dirty && edit_name.invalid" class="error"> 
+								必須項目です。 
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label>ビーコンID</label>
+						</div>
+						<div class="col-lg-10">
+							<p>
+								<input name="edit_uuid1" [(ngModel)]="model.edit_uuid1" #edit_uuid1="ngModel" class="form-control float_left uuid1" required maxlength="8">
+								<span class="float_left uuid_space"> - </span> 
+								<input name="edit_uuid2" [(ngModel)]="model.edit_uuid2" #edit_uuid2="ngModel" class="form-control float_left uuid2" required maxlength="4">
+								<span class="float_left uuid_space"> - </span>
+								<input name="edit_uuid3" [(ngModel)]="model.edit_uuid3" #edit_uuid3="ngModel" class="form-control float_left uuid3" required maxlength="4">
+								<span class="float_left uuid_space"> - </span>
+								<input name="edit_uuid4" [(ngModel)]="model.edit_uuid4" #edit_uuid4="ngModel" class="form-control float_left uuid4" required maxlength="4">
+								<span class="float_left uuid_space"> - </span>
+								<input name="edit_uuid5" [(ngModel)]="model.edit_uuid5" #edit_uuid5="ngModel" class="form-control float_left uuid5" required maxlength="12">
+							</p>
+							<p *ngIf="edit_uuid1.dirty && edit_uuid1.invalid || edit_uuid2.dirty && edit_uuid2.invalid || edit_uuid3.dirty && edit_uuid3.invalid || edit_uuid4.dirty && edit_uuid4.invalid || edit_uuid5.dirty && edit_uuid5.invalid " class="clear_both error"> 
+								必須項目です。 
+							</p>
+						</div>
+					</div>
+					<div class="row"> 
+						<div class="col-lg-2">
+							<label class="control-label">メジャー</label>
+						</div>
+						<div class="col-lg-10">
+							<p><input type="text" pattern="[0-9]+"  name="edit_major" [(ngModel)]="model.edit_major" #edit_major="ngModel" class="form-control" maxlength="9"></p>
+							<p *ngIf="edit_major.dirty && edit_major.invalid" class="error"> 
+								番号だけを入力してください。 
+							</p>
+						</div>
+					</div>
+					<div class="row"> 
+						<div class="col-lg-2">
+							<label class="control-label">マイナー</label>
+						</div>
+						<div class="col-lg-10">
+							<p><input type="text" pattern="[0-9]+"  name="edit_minor" [(ngModel)]="model.edit_minor" #edit_minor="ngModel" class="form-control" maxlength="9"></p>
+							<p *ngIf="edit_minor.dirty && edit_minor.invalid" class="error"> 
+								番号だけを入力してください。 
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+							<label>タイプ</label>
+						</div>
+						<div class="col-lg-10">
+							<select class="form-control" [(ngModel)]="model.edit_type" #edit_type="ngModel" name="edit_type" (change)="onChangeEditType()">
+								<option *ngFor = "let str of types" value="{{str.id}}"> {{str.name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2">
+						</div>
+						<div class="col-lg-10 note">
+							長押しビーコンを選択する場合、メジャー値は　(0x10 << 8 | メジャー値)
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn bg-red waves-effect m-t-20" [disabled]="!editBeaconForm.valid" (click) ="edit(model.edit_id)">存在</button>
+					<button type="button" class="btn bg-red waves-effect m-t-20" data-dismiss="modal">戻る</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- edit confirm -->
+<div class="modal fade" tabindex="-1" role="dialog" id="editedsuccess">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">編集確認</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<label>編集しました。</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn bg-red waves-effect" (click)="edit_success()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- delete -->
+<div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">削除しますか？<br/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cnf"
+                (click)="delete_beacon2()" data-dismiss="modal">削除</button>
+                <button class="btn btn-cnf" data-dismiss="modal">キャンセル</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete confirm -->
+<div class="modal fade" tabindex="-1" role="dialog" id="deletedsuccess">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">削除確認</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<label>削除しました。</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn bg-red waves-effect" (click)="delete_success()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>

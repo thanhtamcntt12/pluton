@@ -1,0 +1,72 @@
+<div class="container-fluid guide-page">
+	<h4 class="title">ビーコン管理</h4>
+	<button class="btn btn-default waves-effect mb30 mt20" routerLink="/guide/add">新規追加</button>
+	<table class="table table-bordered table-striped">
+		<thead>
+		  <tr>
+			<th  class="text-center">No</th>
+			<th  class="text-center">ビーコン名</th>
+			<th  class="text-center">ガイドファイルステータス</th>
+			<th  class="text-center">編集</th>
+			<th  class="text-center">削除</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<tr *ngFor = "let guide of guides | paginate: { itemsPerPage: number_per_page, currentPage: pager, totalItems: total};let i = index">					
+				<td class="text-center">{{guide.id}}</td>
+				<td class="text-center">{{guide.beacon_name}}</td>
+				<td class="text-center">{{guide.status==1? '設定済み' : '設定中'}}</td>
+				<td class="text-center"><a class="" routerLink="/guide/edit/{{guide.id}}">
+					<img width="30" height="auto" src="assets/images/edit.png"/></a></td>
+				<td class="text-center"><a class="" data-toggle="modal" data-target="#delete" (click)="delete_confirm(guide.id)" >
+					<img width="30" height="auto" src="assets/images/delete.png"/></a></td>
+			</tr>
+		</tbody>
+    </table>
+	
+	<div class="text-center">  
+		<div class="row">
+		  <div class="medium-8 medium-offset-2 columns">
+			<h2 class="subheader"></h2>
+			<pagination-controls (pageChange)="pageChanged($event)"  maxSize="10"></pagination-controls>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<!-- delete -->
+<div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">削除しますか？<br/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cnf"
+                (click)="delete_guide()" data-dismiss="modal">削除</button>
+                <button class="btn btn-cnf" data-dismiss="modal">キャンセル</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- delete confirm -->
+<div class="modal fade" tabindex="-1" role="dialog" id="deletedsuccess">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="defaultModalLabel">削除確認</h4>
+			</div>
+			<div class="modal-body">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<label>削除しました。</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn bg-red waves-effect" (click)="delete_success()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>

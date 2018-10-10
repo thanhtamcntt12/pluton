@@ -1,0 +1,26 @@
+.guide-add-page{
+	table tr td.td1{
+		width: 300px;
+	}
+	.upload_loading{
+		display:none;
+		height:40px;
+		width:40px;
+	}
+	.star{
+		color: red;
+		font-size: 16pt;
+	}
+	.error_format{
+		display: none;
+		float: left;
+	}
+	.voice{
+		    width: 100%;
+			height: 27px;
+			input,button{
+				float: left;
+			}
+	}
+	
+}
