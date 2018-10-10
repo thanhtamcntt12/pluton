@@ -1,0 +1,550 @@
+@import url("../fonts/MyFontsWebfontsKit.css");
+
+*,
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+ul,
+li,
+a {
+    font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    vertical-align: middle;
+}
+
+header {
+    width: 100%;
+    background-size: cover;
+}
+
+header.top-page {
+    height: 600px;
+}
+
+.header-opacity {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    opacity: 0.5;
+    z-index: 0;
+    height: 600px;
+}
+
+.header-other-opacity {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    opacity: 0.5;
+    z-index: 0;
+    height: 300px;
+}
+
+.center {
+    text-align: center;
+}
+
+.clear-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.text-left {
+    text-align: left;
+}
+
+footer {
+    border-top: solid 1px #dddddd;
+    padding: 50px 0;
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+.web-name {
+    font-size: 30px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 30px;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    margin-top: 30px;
+}
+
+.web-name-top {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.head-menu li a.btn-contact {
+    color: #FFFFFF;
+}
+
+footer .web-name {
+    font-size: 30px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+footer .company-name {
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+}
+
+ul.footer-menu {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+    text-align: right;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footer-menu li {
+    display: inline-block;
+}
+
+.footer-menu li a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-left: 40px;
+}
+
+.footer-menu li a:hover {
+    text-decoration: none;
+}
+
+.copyright {
+    font-size: 16px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+    text-align: right;
+}
+
+/*------Top Menu-------*/
+.text-head {
+    width: 100%;
+    text-align: center;
+    margin-top: 95px;
+    z-index: 1;
+    position: relative;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+.slogan {
+    font-size: 60px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.menu-area {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.head-menu {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.head-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+}
+
+.head-menu li {
+    float: left;
+}
+
+.head-menu li a {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px 17px;
+    height: 40px;
+    line-height: 20px;
+}
+
+.head-menu li a:hover {
+    color: #0FAAE3;
+}
+
+.head-menu li:first-child a {
+    margin-left: 0;
+}
+
+.head-menu li:last-child a {
+    margin-right: 0;
+}
+
+.head-menu li a.active {
+    border-radius: 5px;
+    border: 1px solid #0faae3;
+    background-color: #0faae3;
+    color: #ffffff;
+}
+
+.head-menu li a.active:hover {
+    border: 1px solid #0FAAE3;
+    color: #0FAAE3;
+    background: #ffffff;
+}
+
+/*-------Common-------*/
+.title-name {
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-top: 80px;
+}
+
+/*----Contact-----*/
+.contac-item-right {
+    float: left;
+    display: table;
+    margin-left: 30px;
+}
+
+.company-detail {
+    vertical-align: middle;
+    display: table-cell;
+    height: 281px;
+}
+
+.contact {
+    font-size: 18px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 60px;
+    margin-top: 40px;
+    border-top: solid 1px #dddddd;
+}
+
+.contact.top-page-contact {
+    border-top: none;
+    margin-top: 0;
+}
+
+.contac-item-left {
+    float: right;
+    display: table;
+    margin-right: 30px;
+}
+
+.contact-phone {
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+}
+
+.contact-phone img {
+    margin-right: 6px;
+    height: 38px;
+    margin-top: -5px;
+}
+
+.contact-time span {
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+}
+
+.company-title {
+    text-align: left;
+    font-size: 26px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ffffff;
+}
+
+.company-detail {
+    width: 500px;
+    height: 281px;
+    border: solid 1px #dddddd;
+    margin-left: 30px;
+}
+
+.read-more {
+    width: 200px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #0faae3;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    line-height: 47px;
+    margin-top: 40px;
+}
+
+.read-more:hover {
+    color: #0FAAE3;
+    background: #ffffff;
+    border: 1px solid #0FAAE3;
+}
+
+.read-more.contact-btn {
+    margin-top: 20px;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 40px;
+}
+
+/*-----Vision Block-----*/
+.vision-bg {
+    background: #fff url("../images/A1_top/オルソ.png") no-repeat left top;
+    color: #fff;
+    height: 450px;
+    width: 100%;
+    background-size: cover;
+    z-index: -1;
+    position: relative;
+}
+
+.vision-opacity {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    opacity: 0.5;
+    z-index: -1;
+    height: 450px;
+}
+
+.info-cover {
+    font-size: 16px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.63;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    display: table;
+    width: 100%;
+}
+
+.info {
+    vertical-align: middle;
+    display: table-cell;
+    height: 450px;
+}
+
+.vision-title {
+    font-size: 36px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+@media only screen and (min-width: 1230px) {
+    .container {
+        width: 1230px;
+    }
+}
+
+.menu-top-list {
+    height: 500px;
+    list-style: none outside none;
+    display: none;
+    text-align: left;
+    background: #ffffff;
+    padding: 0;
+    margin-top: 100px;
+}
+
+.menu-top-list li {
+    padding: 15px 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.menu-top-list li:first-child {
+    margin-top: -25px !important;
+    padding-top: 0 !important;
+}
+
+.menu-top-list li a {
+    display: block;
+    text-align: center;
+    color: #000000;
+}
+
+#btn-menu-top {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 27px;
+}
+
+.menu-area-mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    opacity: 1;
+    width: 100%;
+}
+
+#btn-menu-top img {
+    width: 35px;
+    height: 35px;
+}
+
+.menu-top-list li a.active span {
+    border-bottom: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu-top-list li a.active .no-active {
+    border-bottom: 2px solid #0FAAE3;
+    font-size: 12px !important;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.menu-top-list li a.new span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu-top-list li a.new .no-new {
+    font-size: 12px !important;
+    font-weight: inherit !important;
+}
+
+.head-menu-link {
+    padding-bottom: 4px;
+}
+
+.business-hour {
+    margin-right: 10px;
+}
+
+.web-name {
+    font-family: FFDINWebProLight, sans-serif;
+}

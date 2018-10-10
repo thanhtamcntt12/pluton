@@ -1,0 +1,89 @@
+.other-page-header {
+    background: url("../images/b1_news/Bitmap.png") no-repeat;
+    height: 300px;
+}
+
+.web-name a {
+    color: #000000;
+}
+
+.news-content-1 {
+    margin-bottom: 40px;
+}
+
+.news-content-1 p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 13px;
+}
+
+.title a {
+    color: #000000;
+    font-weight: bold;
+}
+
+.news-time {
+    margin-top: -10px;
+}
+
+.pagination li a {
+    margin-left: 8px;
+    color: black;
+    font-weight: bold;
+    background: #DDDDDD;
+}
+
+.pagination > .active > a {
+    border-radius: 0px !important;
+    border-color: transparent;
+    background: #0FAAE3 !important;
+}
+
+.pagination > .active > a:hover {
+    border: 1px solid #0FAAE3;
+    color: #0FAAE3;
+    border-radius: 0px !important;
+    background: #ffffff !important;
+}
+
+.pagination > li:last-child > a {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.news-1 {
+    padding-top: 80px;
+}
+
+.header-top {
+    position: relative;
+}
+
+.menu-area-mobile {
+    position: inherit;
+}
+
+.menu-top-list {
+    z-index: 10;
+}
+
+@media only screen and (max-width: 600px) {
+    .news-1 {
+        padding-top: 40px;
+    }
+
+    .new-2 .pagination {
+        margin-top: 0;
+    }
+}

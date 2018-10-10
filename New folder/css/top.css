@@ -1,0 +1,190 @@
+.top-page {
+    background: url("../images/h1.png") center no-repeat;
+    position: relative;
+    height: 600px;
+    background-size: cover;
+}
+
+.top-page .web-name {
+    color: #ffffff;
+}
+
+.top-page .web-name a {
+    color: #ffffff;
+}
+
+.head-menu li a {
+    color: #ffffff;
+}
+
+.service-content {
+    height: 450px;
+}
+
+.news {
+    border: solid 1px #dddddd;
+    padding-bottom: 30px;
+}
+
+.company {
+    border: solid 1px #dddddd;
+    padding-bottom: 40px;
+}
+
+.service-content.left {
+    background: #fff url("../images/A1_top/測量-1.png") no-repeat left top;
+    background-size: cover;
+    z-index: 0;
+    position: relative;
+}
+
+.service-content.right {
+    background: #fff url("../images/A1_top/INSPIRE2.png") no-repeat left top;
+    background-size: cover;
+    z-index: 0;
+    position: relative;
+}
+
+.company-bg {
+    background: #fff url("../images/A1_top/測量-2.png") no-repeat left top;
+    background-size: cover;
+    z-index: 0;
+    position: relative;
+    height: 450px;
+}
+
+.service-opacity {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    opacity: 0.5;
+    z-index: -1;
+    height: 450px;
+}
+
+.company-opacity {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100%;
+    opacity: 0.5;
+    z-index: -1;
+    height: 450px;
+}
+
+.title-name-top {
+    font-size: 40px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-top: 80px;
+}
+
+.news-title {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.news-date {
+    margin-top: -12px;
+}
+
+.service-title {
+    font-size: 26px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.info.text-left {
+    padding-left: 100px;
+}
+
+.web-name-logo {
+    color: #ffffff !important;
+    padding-left: 30px;
+}
+
+.menu-top-list {
+    margin-top: 160px !important;
+}
+
+.web-name a {
+    color: #000000;
+}
+
+.head-menu {
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.header-top {
+    position: absolute;
+    top: 95px;
+    width: 100%;
+}
+
+/* Responsive for TOP page */
+@media only screen and (max-width: 600px) {
+    .title-name-top {
+        margin-top: 40px;
+    }
+
+    .description {
+        margin-bottom: 30px;
+    }
+
+    .news-date {
+        margin-bottom: 20px;
+    }
+
+    .news .read-more {
+        margin-top: 10px;
+    }
+
+    .service-title-2 {
+        font-size: 20px;
+    }
+
+    .service-content .read-more {
+        margin-top: 20px;
+    }
+
+    .company-bg {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .service-content,
+    .service-content .info,
+    .service-opacity {
+        height: 276px;
+    }
+
+    .company-bg,
+    .company-opacity,
+    .company-content .info {
+        height: 552px;
+    }
+}

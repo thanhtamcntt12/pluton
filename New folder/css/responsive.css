@@ -1,0 +1,464 @@
+/* Responsive Menu_sp */
+@media only screen and (max-width: 600px) {
+    .title-name-top {
+        font-size: 30px;
+    }
+
+    .description {
+        margin-top: -5px;
+        font-size: 16px;
+    }
+
+    .news-title {
+        font-size: 14px;
+    }
+
+    .news-date {
+        font-size: 12px;
+    }
+
+    .info.text-left {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .company-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .service-title {
+        color: #ffffff;
+    }
+
+    .text-head {
+        font-size: 20px;
+    }
+
+    .title a {
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .news-content-1 p {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .title_news {
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .time_news {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .description-news {
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .detail-news {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.83;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .link-news {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .link-news a {
+        color: #38c5ff;
+    }
+
+    .btn-news {
+        font-weight: bold;
+    }
+
+    .title_news {
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .time_news {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .description-news {
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .detail-news {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.83;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .link-news {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .link-news a {
+        color: #38c5ff;
+    }
+
+    .btn-news {
+        font-weight: bold;
+    }
+
+    .business_contents {
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .vision-title {
+        font-size: 30px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #ffffff;
+    }
+
+    .info p {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.83;
+        letter-spacing: normal;
+        color: #ffffff;
+    }
+
+    .title-name {
+        font-size: 30px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+    }
+
+    .service-title {
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+    }
+
+    .service-title-1 {
+        font-size: 20px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+    }
+
+    .text-service {
+        font-size: 12px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.83;
+        letter-spacing: normal;
+        color: #000000;
+    }
+
+    .img-responsive-1 {
+        margin-bottom: 20px;
+    }
+
+    .company-title h2 {
+        font-size: 20px;
+        margin-bottom: -20px;
+    }
+
+    .company-title h3 {
+        font-size: 16px;
+    }
+
+    .company-names p {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    .company-text {
+        width: 100%;
+    }
+
+    .company-text p {
+        font-size: 12px;
+    }
+
+    footer {
+        text-align: center;
+    }
+
+    footer .web-name {
+        text-align: center;
+    }
+
+    ul.footer-menu {
+        float: left;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .footer-menu li a {
+        font-size: 12px;
+        margin-left: 7px;
+        border-right: 2px solid #dddddd;
+        padding-right: 7px;
+    }
+
+    .footer-menu li:last-child a {
+        border-right: none;
+    }
+
+    footer .company-name {
+        font-size: 14px;
+    }
+
+    footer .company-info {
+        margin-top: 20px;
+    }
+
+    footer .company-head-office {
+        font-size: 12px;
+    }
+
+    footer .company-tel {
+        font-size: 12px;
+    }
+
+    footer .company-fax {
+        font-size: 12px;
+    }
+
+    footer .company-email {
+        font-size: 12px;
+    }
+
+    .contac-item-left {
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+    }
+
+    .contac-item-left .text {
+        font-size: 14px;
+    }
+
+    .contac-item-right {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .contac-item-right .text {
+        font-size: 14px;
+    }
+
+    .contact-time {
+        font-size: 12px;
+    }
+
+
+    .slogan {
+        font-size: 40px;
+    }
+
+    .slogan-1 {
+        margin-top: 100px;
+    }
+
+    .text-head {
+        text-align: center;
+    }
+
+    .top-page-hide {
+        display: none;
+    }
+
+    .contact-phone img {
+        margin-top: -7px;
+        height: 34px;
+    }
+
+    .title-name {
+        margin-top: 40px;
+    }
+
+    .business-hour {
+        display: block;
+        margin-right: 0;
+    }
+
+    .copyright {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .header-other-opacity,
+    .other-page-header {
+        height: 130px;
+    }
+
+    .text-head {
+        margin-top: 25px;
+    }
+
+    .text-head .slogan {
+        margin-bottom: 0;
+        font-size: 35px;
+    }
+
+    .menu-area-mobile .web-name {
+        margin-bottom: 30px;
+    }
+
+    .servive-2 {
+        margin-top: 20px;
+    }
+
+    .servive-1 img,
+    .servive-2 img {
+        width: 335px;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .service {
+        padding-bottom: 40px;
+    }
+
+    .vision-bg,
+    .service-bg,
+    .vision-opacity,
+    .vision-bg .info {
+        height: 320px;
+    }
+
+    .vision-title {
+        font-size: 24px;
+    }
+
+    .service-title-1 {
+        margin-top: 0;
+        margin-bottom: 40px;
+        font-size: 24px;
+    }
+
+    .service-title {
+        margin-top: 0;
+    }
+
+    .title-name {
+        font-size: 24px;
+    }
+
+    .company {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .company-text p {
+        margin-bottom: 0;
+    }
+
+    .conpany-description p {
+        font-size: 16px;
+        min-width: 120px;
+    }
+
+    .post-content .detail-news {
+        font-size: 14px;
+    }
+
+    .post-content .link-news {
+        font-size: 14px;
+    }
+
+    .post-content .description-news {
+        margin-top: 0;
+    }
+}
